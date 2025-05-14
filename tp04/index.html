@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Création de compte utilisateur</title>
+</head>
+<body>
+  <h2>Formulaire de création de compte</h2>
+
+  <form action="https://digicode.cleverapps.io/utilisateurs/create" method="POST">
+    
+    <!-- Champ caché pour l'identifiant du créateur -->
+    <input type="hidden" name="idCreateur" value="user123abc">
+
+    <!-- Informations personnelles -->
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required><br><br>
+
+    <label for="prenom">Prénom :</label>
+    <input type="text" id="prenom" name="prenom" required><br><br>
+
+    <label for="dateNaissance">Date de naissance :</label>
+    <input type="date" id="dateNaissance" name="dateNaissance" required><br><br>
+
+    <label for="lieuNaissance">Lieu de naissance :</label>
+    <input type="text" id="lieuNaissance" name="lieuNaissance" required><br><br>
+
+    <!-- Département de naissance -->
+    <label for="deptNaissance">Département de naissance :</label>
+    <select id="deptNaissance" name="departementNaissance" required>
+      <option value="">-- Choisissez un département --</option>
+      <option value="33">Gironde</option>
+      <option value="24">Dordogne</option>
+      <option value="47">Lot-et-Garonne</option>
+      <option value="40">Landes</option>
+      <option value="64">Pyrénées-Atlantiques</option>
+    </select><br><br>
+
+    <!-- Adresse -->
+    <fieldset>
+      <legend>Adresse</legend>
+
+      <label for="numeroRue">N° de rue :</label>
+      <input type="text" id="numeroRue" name="numeroRue" required><br><br>
+
+      <label for="libelleRue">Nom de la rue :</label>
+      <input type="text" id="libelleRue" name="libelleRue" required><br><br>
+
+      <label for="codePostal">Code postal :</label>
+      <input type="text" id="codePostal" name="codePostal" required><br><br>
+
+      <label for="ville">Ville :</label>
+      <input type="text" id="ville" name="ville" required><br><br>
+    </fieldset>
+
+    <!-- Boutons -->
+    <input type="submit" value="Valider">
+    <input type="reset" value="Effacer">
+
+  </form>
+</body>
+</html>
