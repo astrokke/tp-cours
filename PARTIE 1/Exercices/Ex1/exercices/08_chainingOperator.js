@@ -15,8 +15,6 @@
  *
  */
 
-const getGroupName = 
-
-
+const getGroupName = (user) => user?.group?.name;
 
 module.exports = { getGroupName };
