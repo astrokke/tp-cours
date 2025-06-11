@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js TP - Serveur de fichiers statiques</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .status-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .status-item {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .resolve-form {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 5px;
+        }
+        button {
+            padding: 5px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resolveResult {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Node.js TP - Serveur de fichiers statiques</h1>
+
+    <div class="section">
+        <h2>Monitoring Système</h2>
+        <div class="status-container">
+            <div class="status-item">
+                <h3>CPU</h3>
+                <div id="cpuUsage">Chargement...</div>
+            </div>
+            <div class="status-item">
+                <h3>Mémoire</h3>
+                <div id="memoryUsage">Chargement...</div>
+            </div>
+            <div class="status-item">
+                <h3>Temps de fonctionnement</h3>
+                <div id="uptime">Chargement...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Résolution DNS</h2>
+        <form class="resolve-form" id="resolveForm">
+            <input type="text" id="domainInput" placeholder="Entrez un nom de domaine (ex: google.com)" required>
+            <button type="submit">Résoudre</button>
+        </form>
+        <div id="resolveResult"></div>
+    </div>
+
+    <script>
+        // Monitoring système
+        const eventSource = new EventSource('/status');
+        eventSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            
+            // Mise à jour CPU
+            document.getElementById('cpuUsage').textContent = 
+                `Charge: ${data.cpu.toFixed(2)}`;
+
+            // Mise à jour Mémoire
+            const usedMem = (data.memory.used / 1024 / 1024 / 1024).toFixed(2);
+            const totalMem = (data.memory.total / 1024 / 1024 / 1024).toFixed(2);
+            document.getElementById('memoryUsage').textContent = 
+                `Utilisée: ${usedMem} GB / ${totalMem} GB`;
+
+            // Mise à jour Uptime
+            const hours = Math.floor(data.uptime / 3600);
+            const minutes = Math.floor((data.uptime % 3600) / 60);
+            const seconds = Math.floor(data.uptime % 60);
+            document.getElementById('uptime').textContent = 
+                `${hours}h ${minutes}m ${seconds}s`;
+        };
+
+        // Résolution DNS
+        document.getElementById('resolveForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const domain = document.getElementById('domainInput').value;
+            const resultDiv = document.getElementById('resolveResult');
+            
+            try {
+                const response = await fetch(`/resolve?domain=${encodeURIComponent(domain)}`);
+                const data = await response.json();
+                
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `
+                    <h3>Résultat pour ${data.domain}</h3>
+                    <p>IP: ${data.ip}</p>
+                    <p>Type: ${data.family}</p>
+                `;
+            } catch (error) {
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<p style="color: red;">Erreur: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html> 
