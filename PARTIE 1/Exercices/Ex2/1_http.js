@@ -26,6 +26,6 @@ const server = http.createServer((req,res) => {
 })
 
 
-server.listen('3000','127.0.0.1', () => {
-    console.log(`Server running at port 3000`)
+server.listen('3001','127.0.0.1', () => {
+    console.log(`Server running at port 3001`)
 });

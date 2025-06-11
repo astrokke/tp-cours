@@ -13,6 +13,8 @@ const {sleep} = require("../exercices/10_promise");
  */
 const usingThen = (cb) => sleep().then(cb);
 
+// console.log(usingThen(() => console.log("Hello World")));
+
 
 /**
  * Créez une fonction asynchrone qui attend 2 secondes puis execute le callback passé en paramètre
@@ -29,8 +31,11 @@ const usingAwait = async (cb) => {
     try {
         await sleep();
         cb();
-    } catch (err) {}
+    } 
+    catch (err) {}
 }
+
+// console.log(usingAwait(() => console.log("Hello World")));
 
 /**
  * Créez une fonction asynchrone qui effectue un appel api vers l'url passé en paramètre

@@ -1,6 +1,6 @@
 
 /**
- * utilisez les nouveau guillets ` (alt gr + 7) pour concaténer le nom et le prénom passé en paramètre
+ * utilisez les nouveau guillemets ` (alt gr + 7) pour concaténer le nom et le prénom passé en paramètre
  * Renvoi le résultat
  * 
  * exemple: "John", "Doe" => "John Doe"

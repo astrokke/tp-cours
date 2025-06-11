@@ -6,10 +6,10 @@
  * exemple :
  * {
  *  name: "John",
- *    group: {
- *      name: "admin"
- *    }
+ *  group: {
+ *     name: "admin"
  *  }
+ * }
  *
  * doit renvoyer "admin"
  *
