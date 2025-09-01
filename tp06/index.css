@@ -1,0 +1,42 @@
+h1 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    background-color: blue;
+    padding: 15px;
+    border-radius: 10px;
+    width: 60%;
+    margin: 20px auto;
+  }
+  
+  /* Style du tableau */
+  table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    font-family: Verdana, sans-serif;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  /* En-tête du tableau */
+  thead {
+    background-color: blue;
+    color: white;
+  }
+  
+  /* Bordures et espacements */
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  /* Lignes alternées */
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Survol des lignes */
+  tbody tr:hover {
+    background-color: #e0e0e0;
+  }

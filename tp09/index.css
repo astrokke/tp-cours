@@ -1,0 +1,25 @@
+
+header{
+    text-align: center;
+    background-color: aqua;
+}
+nav{
+    background-color: pink;
+}
+main{
+    background-color: green;
+    display: flex;
+    justify-content: space-around;
+}
+section{
+    background-color: blueviolet;
+    margin: 5px;
+}
+footer{
+    text-align: center;
+    background-color: red;
+}
+.pouet{
+    display: flex;
+
+}
